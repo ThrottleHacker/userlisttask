@@ -25,6 +25,15 @@ class _RegscreenState extends State<Registerscreen> {
   String? email;
   String? password;
 
+  @override
+  void initState() {
+    super.initState();
+    email="";
+    password="";
+    nameController.text="";
+    genController.text="";
+  }
+
   bool obscureText = true;
 
   void viewPassword(){
@@ -40,7 +49,12 @@ class _RegscreenState extends State<Registerscreen> {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email??"",
         password: password??"",
-      );
+      ).then((value) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Registred successfully.")));
+        if(value.additionalUserInfo!.isNewUser)
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>Homescreen()));
+        print("value ${value.additionalUserInfo?.isNewUser}");
+      });
     } on FirebaseAuthException catch (e) {
       print("ress $e");
       print("ress2 ${e.code}");

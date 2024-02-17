@@ -21,6 +21,13 @@ class _LoginscreenState extends State<Loginscreen> {
   // var emailController = TextEditingController();
   // var passController = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    email="";
+    password="";
+  }
+
   bool obscureText = true;
 
   void viewPassword(){
