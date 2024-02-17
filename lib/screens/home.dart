@@ -143,11 +143,36 @@ class _HomescreenState extends State<Homescreen> {
          mainAxisAlignment: MainAxisAlignment.spaceBetween,
          children: [
            SizedBox(height: 10,),
-           Center(
-             child: CircleAvatar(
-               radius: 50,
-               backgroundImage: NetworkImage(user.image),
-             ),
+           Stack(
+             children: [
+               Center(
+                 child: CircleAvatar(
+                   radius: 50,
+                   backgroundImage: NetworkImage(user.image),
+                 ),
+               ),
+               Positioned(
+                 bottom: 5,
+                   right: 12.w,
+                   child: Container(
+                 height: 2.h,
+                 width: 4.w,
+                 decoration: BoxDecoration(
+                   color:  user.isOnline ? Colors.green:Colors.grey,
+                   borderRadius: BorderRadius.only(
+                     bottomLeft: Radius.circular(10),
+                     bottomRight: Radius.circular(10),
+                     topRight: Radius.circular(10),
+                     topLeft: Radius.circular(10),
+                   ),
+                   border: Border.all(
+                     color: Colors.white, // Border color
+                     width: 0, // Border width
+                   ),
+                 ),
+               ))
+
+             ],
            ),
            Padding(
              padding: const EdgeInsets.all(8.0),
